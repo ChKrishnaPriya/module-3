@@ -1,0 +1,66 @@
+EmpID Name Subject Marks(/50)
+E001 Nilesh Unix 30
+E002 Nagesh DSA 20
+E003 Ramesh DSA 40
+E004 Suresh Unix 35
+E005 Mohith Unix 50
+E006 Divya  DSA  40
+E007 Bhargav Unix 40
+E008 Sumanth DSA  25
+E009 Anusha Unix 25
+E010 Priya DSA 30
+
+[SEP19_RDBMS16@NDAUNIX ~]$ vi emp.awk
+BEGIN{ printf "Unix and DSA student marks detals"
+}
+$3 == "Unix"{
+sum=sum+$4
+count=count+1
+if ($4 > top){
+top=$4
+name=$2
+}
+if ($4 > t1 && $4 != top) {
+t1=$4
+namesec=$2
+}}
+
+$3 == "DSA"{
+sum1=sum1+$4
+count1=count1+1
+if ($4 >= top1){
+top1=$4
+named=$2
+}
+if ($4 > t2 && $4 != top1) {
+t2=$4
+namesec1=$2
+}}
+
+END{
+avg=sum/count
+avg1=sum1/count1
+
+printf "\nAverage Score in Unix is %d\n",avg
+printf "Average Score in DSA is %d\n",avg1
+printf "\n First Top of Unix is %s\n",name
+printf "\n second Top of Unix is %s\n",namesec
+printf " \n First Top in DSA is %s \n",named
+printf "\n Second Top of DSA is %s\n",namesec1
+
+}
+
+[SEP19_RDBMS16@NDAUNIX ~]$ awk -f emp.awk emp.txt
+Unix and DSA student marks detals
+
+Average Score in Unix is 36
+Average Score in DSA is 31
+
+First Top of Unix is Mohith
+
+second Top of Unix is Bhargav
+
+First Top in DSA is Divya
+
+Second Top of DSA is Priya
+
